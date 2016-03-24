@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 
 const loaderUtils = require('loader-utils');
-const babel = require('babel-core');
 const ejs = require('ejs');
 
 const util = require('atool-doc-util');
@@ -49,7 +48,5 @@ module.exports = function(content) {
 
   this.emitFile(calculateHtmlPath(options.cwd, resourcePath), html);
 
-  return `module.exports = ${babel.transform(content, {
-    presets: ['es2015', 'react'],
-  }).code}`;
+  return content;
 }
