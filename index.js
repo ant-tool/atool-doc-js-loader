@@ -29,9 +29,14 @@ module.exports = function(content) {
     `${path.basename(resourcePath, path.extname(resourcePath))}.js`,
   ];
 
+  const link = {};
+  Object.keys(options.entry).forEach(function(key) {
+    link[key] = path.relative('../', path.relative(name, key));
+  });
+
   const html = ejs.render(fs.readFileSync(tpl, 'utf-8'), {
     file: {
-      link: options.entry,
+      link: link,
       title: name,
       script: scripts,
       desc: util.marked([{
