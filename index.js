@@ -31,6 +31,7 @@ module.exports = function(content) {
 
   const html = ejs.render(fs.readFileSync(tpl, 'utf-8'), {
     file: {
+      link: options.entry,
       title: name,
       script: scripts,
       desc: util.marked([{
